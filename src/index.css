@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.today-container, .next-hours-weather, .single-day-weather {
+  border: 1px red solid;
+}
