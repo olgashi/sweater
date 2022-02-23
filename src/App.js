@@ -123,8 +123,8 @@ class App extends React.Component {
             <CurrentWeather city={this.state.city} currentTemp={Math.ceil(this.state.weatherCurrent.temp)} highTemp={this.state.todayHigh} lowTemp={this.state.todayLow} iconUrl={this.state.weatherCurrent.weather[0].icon} />
             <NextHeader timeRange="hours" timeRangeAmount="5" />
             <NextHoursContainer hourly={weatherData.hourly} />
-            <NextHeader timeRange="days" timeRangeAmount="3" />
-            <NextDaysContainer daily={weatherData.daily} />
+            <NextHeader timeRange="days" timeRangeAmount="7" />
+            <NextDaysContainer daily={weatherData.daily} numDays="7" />
 
           </Container>
 
