@@ -8,8 +8,10 @@ export default function SearchBar(props) {
           placeholder="Entere City and State or Zipcode"
           aria-label="Entere City and State or Zipcode"
           aria-describedby="basic-addon2"
+          id="zip-code-input"
+
         />
-        <Button variant="outline-secondary">
+        <Button variant="outline-secondary" onClick={props.handleClick}>
           Get Weather
         </Button>
       </InputGroup>
