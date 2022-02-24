@@ -10,6 +10,7 @@ import NextHoursContainer from './components/NextHoursContainer';
 import NextDaysContainer from './components/NextDaysContainer';
 import localforage from 'localforage';
 import SearchBar from './components/SearchBar';
+import env from "react-dotenv";
 const weatherData = require('./data/weather.json');
 const zipcodes = require('zipcodes');
 
@@ -66,7 +67,7 @@ class App extends React.Component {
     const { zip, loc } = data;
     const key = zip;
     const [lat, lon] = loc.split(',');
-    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=e6bc03461c846b8a1945a98689bcd120`)
+    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${env.WEATHER_API}`)
     .then(weatherData => weatherData.data).then(weatherData => {
       localforage.getItem(key, function(err, value) {
         if (value === null || isDataOverTenMinsOld) {
