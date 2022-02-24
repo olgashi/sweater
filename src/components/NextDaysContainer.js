@@ -5,7 +5,6 @@ import { convertToWeekDayShort } from '../utils/date-utils';
 
 export default function NextDaysContainer(props) {
   const dayWeatherArr = props.daily.slice(0, props.numDays);
-  console.log(dayWeatherArr)
   const allDaysOutput =  dayWeatherArr.map(nextDay => {
 
     return <NextSingleDay 

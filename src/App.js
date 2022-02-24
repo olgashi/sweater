@@ -26,6 +26,7 @@ class App extends React.Component {
       todayHigh: null,
       zip: '',
       city: '',
+      region: '',
       initialLocation: false,
       location: null,
     }
@@ -36,7 +37,8 @@ class App extends React.Component {
   getData = async () => {
     console.log(this.state.weatherFetchedTimestamp);
     await axios.get(`https://ipinfo.io?token=b1ca041c2a1875`).then(responseLocation => responseLocation.data).then((data) => {
-      this.setState({ zip: data.postal, city: data.city, initialLocation: true, location: data.loc }); //"41.9543,-87.6575"
+    console.log(data)  
+    this.setState({ zip: data.postal, city: data.city, initialLocation: true, location: data.loc, region: data.region }); //"41.9543,-87.6575"
       return { zip: data.postal, loc: data.loc };
     }).then(data => {
       this.getWeatherData(data);
@@ -120,7 +122,7 @@ class App extends React.Component {
           <Container>
 
             <TodayHeader />
-            <CurrentWeather city={this.state.city} currentTemp={Math.ceil(this.state.weatherCurrent.temp)} highTemp={this.state.todayHigh} lowTemp={this.state.todayLow} iconUrl={this.state.weatherCurrent.weather[0].icon} />
+            <CurrentWeather city={this.state.city} state={this.state.region} currentTemp={Math.ceil(this.state.weatherCurrent.temp)} highTemp={this.state.todayHigh} lowTemp={this.state.todayLow} iconUrl={this.state.weatherCurrent.weather[0].icon} />
             <NextHeader timeRange="hours" timeRangeAmount="5" />
             <NextHoursContainer hourly={weatherData.hourly} />
             <NextHeader timeRange="days" timeRangeAmount="7" />

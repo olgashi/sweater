@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: aqua; */
+} 
+#root {
+  background-color: #e3f4ff;
+  color: #384155;
+  padding-bottom: 50px;
 }
 
 code {
@@ -13,5 +19,94 @@ code {
 }
 
 .today-container, .next-hours-weather, .single-day-weather {
-  border: 1px red solid;
+  /* border: 1px  solid; */
+  border-radius: 6px;
+  padding: 10px;
+  /* box-shadow: 0 19px 38px rgba(170, 169, 169, 0.3), 0 15px 12px rgba(0,0,0,0.22); */
+  /* box-shadow: 0 3px 10px rgb(170 169 169 / 10%), 0 15px 12px rgb(0 0 0 / 12%); */
+  /* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(168, 168, 192, 0.25) 0px 50px 100px -20px, rgba(124, 123, 123, 0.3) 0px 30px 60px -30px; */
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin-top: 10px;
+
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
+
+.today-container {
+  background-color: #dce9f1;
+  height: 6rem;
+}
+
+.single-day-weather {
+  height: 6rem;
+}
+.single-day-weather div {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.next-hours-weather {
+  background-color: #dce9f1;
+  height: 15vw;
+  padding-left: 2rem;
+}
+
+.next-hours-weather div {
+  text-align: center;
+}
+
+.header {
+  margin-top: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+.weekday-weather {
+  font-size: 1.9rem;
+  font-family: revert;
+  font-weight: 700;
+}
+
+.temp-weather {
+  font-size: 1.2rem;
+  font-family: revert;
+  font-weight: 700;
+}
+
+.description-weather {
+  font-size: 1.2rem;
+  font-family: revert;
+  font-weight: 700;
+}
+
+.low-high-weather {
+  font-size: 1rem;
+  font-family: revert;
+  font-weight: 400;
+
+}
+
+.searchbar {
+  margin-top: 2rem;
+  background-color:#0f203a;
+  color: #FFF;
+}
+
+button:hover {
+  background-color:#1f4680;
+
+}
+
+.day-weather {
+  font-size: 2rem;
+  font-family: revert;
+  font-weight: 700;
+
+}
+
+.single-day-weather.row {
+  margin-top: 5px;
+  box-shadow: #1f4680;
+  margin-bottom: 10px;
+  height: 10vw;
+  background-color: #dce9f1;
+}
+
