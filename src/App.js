@@ -15,6 +15,7 @@ const weatherData = require('./data/weather.json');
 const zipcodes = require('zipcodes');
 
 
+
 class App extends React.Component {
   constructor() {
     super();
@@ -28,8 +29,10 @@ class App extends React.Component {
       zip: '',
       city: '',
       region: '',
+      country: '',
       initialLocation: false,
       location: null,
+      timezone: ''
     }
     this.isOverTenMinutes = this.isOverTenMinutes.bind(this);
     this.handleGetWeatherClick = this.handleGetWeatherClick.bind(this);
@@ -39,8 +42,16 @@ class App extends React.Component {
     console.log(this.state.weatherFetchedTimestamp);
     await axios.get(`https://ipinfo.io?token=b1ca041c2a1875`).then(responseLocation => responseLocation.data).then((data) => {
     console.log(data)  
-    this.setState({ zip: data.postal, city: data.city, initialLocation: true, location: data.loc, region: data.region }); //"41.9543,-87.6575"
-      return { zip: data.postal, loc: data.loc };
+    this.setState({ 
+      zip: data.postal, 
+      city: data.city, 
+      initialLocation: true, 
+      location: data.loc, //"41.9543,-87.6575"
+      region: data.region,
+      country: data.country, 
+      timezone: data.timezone
+    }); 
+      return { zip: data.postal, loc: data.loc, city: data.city, region: data.region };
     }).then(data => {
       this.getWeatherData(data);
     })
@@ -62,15 +73,17 @@ class App extends React.Component {
   }
 
   getWeatherData(data) {
-    let isDataOverTenMinsOld = this.isOverTenMinutes(this.state.weatherFetchedTimestamp || new Date());
 
-    const { zip, loc } = data;
-    const key = zip;
+    const { zip, loc, region, country, city } = data;
+    const key = `${city}${region}${country}`;
     const [lat, lon] = loc.split(',');
     axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${env.WEATHER_API}`)
     .then(weatherData => weatherData.data).then(weatherData => {
       localforage.getItem(key, function(err, value) {
+        console.log(`Data from cache for the key: ${key}. Data: ${value}`);
+        let isDataOverTenMinsOld = true; //FIXME
         if (value === null || isDataOverTenMinsOld) {
+          weatherData['data_cached_timestamp'] = new Date();
           localforage.setItem(key, weatherData).then(function (value) {
           });
           this.setState({ weatherFetchedTimestamp: new Date() });
@@ -81,6 +94,8 @@ class App extends React.Component {
         }
       });
       const weatherToday = weatherData.daily[0];
+      console.log('Today weather');
+
       this.setState({ 
         weatherCurrent: weatherData.current, 
         weatherToday: weatherToday, 
@@ -110,6 +125,12 @@ class App extends React.Component {
     }
   }
 
+  filterHourlyWeatherToCurrentHours(arr) {
+    const currentHour = (new Date()).getHours();
+  
+    return arr.filter(el => (new Date(el.dt * 1000)).getHours() >= currentHour)
+  }
+
 
   render() {
 
@@ -125,7 +146,7 @@ class App extends React.Component {
             <TodayHeader />
             <CurrentWeather city={this.state.city} state={this.state.region} currentTemp={Math.ceil(this.state.weatherCurrent.temp)} highTemp={this.state.todayHigh} lowTemp={this.state.todayLow} iconUrl={this.state.weatherCurrent.weather[0].icon} />
             <NextHeader timeRange="hours" timeRangeAmount="5" />
-            <NextHoursContainer hourly={weatherData.hourly} />
+            <NextHoursContainer hourly={this.filterHourlyWeatherToCurrentHours(weatherData.hourly)} />
             <NextHeader timeRange="days" timeRangeAmount="7" />
             <NextDaysContainer daily={weatherData.daily} numDays="7" />
 
