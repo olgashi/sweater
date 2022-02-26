@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,34 +17,32 @@ const moment = require('moment');
 require('moment-timezone');
 
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      userIP: '',
-      weatherCurrent: null,
-      weatherToday: null,
-      weatherHourly: null,
-      todayLow: null,
-      todayHigh: null,
-      weatherDaily: null,
-      zip: '',
-      city: '',
-      region: '',
-      country: '',
-      initialLocation: false,
-      location: null,
-      timezone: '',
-      alerts: true
-    }
-    this.isOverTenMinutes = this.isOverTenMinutes.bind(this);
-    this.handleGetWeatherClick = this.handleGetWeatherClick.bind(this);
-    this.getWeatherData = this.getWeatherData.bind(this);
-  }
+function App() {
 
-  getData = async () => {
+const [userLocationData, setUserLocationData] = useState({
+  userIP: '',
+  zip: '',
+  city: '',
+  region: '',
+  country: '',
+  initialLocation: false,
+  location: null,
+  timezone: '',
+  alerts: true
+});
+
+const [weatherData, setWeatherData] = useState({
+  weatherCurrent: null,
+  weatherToday: null,
+  weatherHourly: null,
+  todayLow: null,
+  todayHigh: null,
+  weatherDaily: null
+})
+
+  async function getData () {
     await axios.get(`https://ipinfo.io?token=b1ca041c2a1875`).then(responseLocation => responseLocation.data).then((data) => {
-    this.setState({ 
+      setUserLocationData({ 
       zip: data.postal, 
       city: data.city, 
       initialLocation: true, 
@@ -55,33 +53,26 @@ class App extends React.Component {
     }); 
       return { loc: data.loc };
     }).then(data => {
-      this.getWeatherData(data);
+      getWeatherData(data);
     })
     .catch(error => {
-      this.setState({ initialLocation: false });
+      setUserLocationData({ initialLocation: false });
       console.log(error);
     })
   }
 
-  isOverTenMinutes(tmeStamp) {
-    const timeDifference = Math.floor(((new Date() - new Date(tmeStamp))/1000)/60);
-    return  timeDifference >= 10;
-  }
-
-  componentDidMount = async () => {
-    if (!this.state.initialLocation) {
-      await this.getData();
+  useEffect(() => {
+    if (!userLocationData.initialLocation) {
+      (async () => await getData())();
     }
-  }
+  })
 
-  getWeatherData(data) {
-    const self = this;
+  async function getWeatherData(data) {
     const { loc } = data;
     const [lat, lon] = loc.split(',');
     const key = `${lat}${lon}`;
     
     localforage.getItem(key, function(err, value) {
-      let weatherDataToDisplay;
       let cachedDataExpired;
       if (value) {
         const cacheSavedTime = moment(value.data_cached_timestamp);
@@ -91,31 +82,30 @@ class App extends React.Component {
       
       if (value === null || (value && cachedDataExpired)) { // Get data and Store it in cache for future uses
         axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${env.OPEN_WEATHER_MAP_TOKEN}`)
-        .then(weatherData => weatherData.data).then(weatherData => {
-          
-          weatherDataToDisplay = weatherData;
-          weatherData['data_cached_timestamp'] = new Date();
-          localforage.setItem(key, weatherData).then(function (value) {
-            console.log('Setting item in cache', JSON.stringify(weatherData));
+        .then(response => response.data).then(fetchedWeatherData => {
+
+          fetchedWeatherData['data_cached_timestamp'] = new Date();
+          localforage.setItem(key, fetchedWeatherData).then(function (fetchedWeatherData) {
+            console.log('Setting item in cache', JSON.stringify(fetchedWeatherData));
           });
-          return weatherData;
-        }). then( weatherData => {
-          const newWeatherData = weatherData.daily[0];
-          self.setState({
-            timezone: weatherData.timezone,
-            weatherCurrent: weatherData.current, 
+          return fetchedWeatherData;
+        }).then(updatedWeatherData => {
+          const newWeatherData = updatedWeatherData.daily[0];
+          setWeatherData({
+            timezone: updatedWeatherData.timezone,
+            weatherCurrent: updatedWeatherData.current, 
             weatherToday: newWeatherData, 
-            weatherHourly: weatherData.hourly,
-            weatherDaily: weatherData.daily,
+            weatherHourly: updatedWeatherData.hourly,
+            weatherDaily: updatedWeatherData.daily,
             todayLow: newWeatherData.temp.min ? newWeatherData.temp.min : null, 
             todayHigh: newWeatherData.temp.max ? newWeatherData.temp.max : null,
-            alerts: weatherData.alerts ? weatherData.alerts.map(alert => alert.description).filter(el => el).join(', ') : null,
+            alerts: updatedWeatherData.alerts ? updatedWeatherData.alerts.map(alert => alert.description).filter(el => el).join(', ') : null,
           });
         })
       } else { // Use data from cache
         const weatherToday = value.daily[0];
 
-        self.setState({
+        setWeatherData({
           timezone: value.timezone,
           weatherCurrent: value.current, 
           weatherToday: weatherToday,
@@ -130,11 +120,11 @@ class App extends React.Component {
     });
   }
 
-  handleGetWeatherClick() {
+  function handleGetWeatherClick() {
     const inputElement = document.getElementById('user-input-location-search')
-    const zipToSearch = inputElement.value;
-    // inputElement.value = ''; //FIXME doesnt clear input value
-    const zipCodeData = zipcodes.lookup(zipToSearch);
+    const userSearchInput = inputElement.value;
+    inputElement.value = ''; //FIXME doesnt clear input value
+    const validZiCode = zipcodes.lookup(userSearchInput);
     const lat = inputElement.getAttribute('lat');
     const lon = inputElement.getAttribute('lon');
     const city = inputElement.getAttribute('city');
@@ -146,7 +136,7 @@ class App extends React.Component {
     if (lat && lon) {
       locationInput = [lat, lon].join(',');
 
-      this.setState({
+      setUserLocationData({
         zip: null,
         city: city,
         location: locationInput,
@@ -155,26 +145,27 @@ class App extends React.Component {
         country: country,
       });
 
-    } else if (zipCodeData) {
-      locationInput = [zipCodeData.latitude, zipCodeData.longitude].join(',');
-      this.setState({
-        zip: zipCodeData.zip,
-        city: zipCodeData.city,
+    } else if (validZiCode) {
+      locationInput = [validZiCode.latitude, validZiCode.longitude].join(',');
+      setUserLocationData({
+        zip: validZiCode.zip,
+        city: validZiCode.city,
         location: locationInput,
         initialLocation: true,
-        region: zipCodeData.state,
-        country: zipCodeData.country,
+        region: validZiCode.state,
+        country: validZiCode.country,
       });
 
     }
-    this.getWeatherData({ 
+    getWeatherData({ 
       loc: locationInput
      });
      inputElement.value = '';
   }
 
-  filterHourlyWeatherToCurrentHours(arr) {
-    moment.tz.setDefault(this.state.timezone);
+  function filterHourlyWeatherToCurrentHours(arr, data) {
+  console.log(data);
+    moment.tz.setDefault(userLocationData.timezone);
     let now = moment();
 
     return arr.filter(el => {
@@ -185,48 +176,45 @@ class App extends React.Component {
     })
   }
 
-  render() {
     return (
       <div>
       <Container>
         <Row>
           <Col>
-          <SearchBar handleClick={this.handleGetWeatherClick}/>
+          <SearchBar handleClick={handleGetWeatherClick}/>
           <Row className="no-search-results-message"></Row>
           </Col>
 
         </Row>
       </Container>
-        {this.state.initialLocation && 
-        this.state.weatherCurrent && 
-        this.state.weatherToday && 
-        this.state.weatherHourly && 
-        this.state.weatherDaily
+        {userLocationData.initialLocation && 
+          weatherData.weatherCurrent && 
+          weatherData.weatherToday && 
+          weatherData.weatherHourly && 
+          weatherData.weatherDaily
         ?
           <Container>
             <CurrentWeatherHeader />
             <CurrentWeather 
-              currentWeatherData={this.state.weatherCurrent}
-              city={this.state.city} 
-              region={this.state.region}
-              country= {this.state.country} 
-              highTemp={this.state.todayHigh} 
-              lowTemp={this.state.todayLow} />
-              {this.state.alerts ?
-                <Alerts alerts={this.state.alerts}/> : <></>}
+              currentWeatherData={weatherData.weatherCurrent}
+              city={userLocationData.city} 
+              region={userLocationData.region}
+              country= {userLocationData.country} 
+              highTemp={weatherData.todayHigh} 
+              lowTemp={weatherData.todayLow} />
+              {weatherData.alerts ?
+                <Alerts alerts={weatherData.alerts}/> : <></>}
             <NextHeader timeRange="hours" timeRangeAmount="5" />
-            <NextHoursContainer hourly={this.filterHourlyWeatherToCurrentHours(this.state.weatherHourly)} timezone={this.state.timezone}/>
+            <NextHoursContainer hourly={filterHourlyWeatherToCurrentHours(weatherData.weatherHourly, weatherData)} timezone={userLocationData.timezone}/>
             <NextHeader timeRange="days" timeRangeAmount="7" />
-            <NextDaysContainer daily={this.state.weatherDaily} numDays="7" timeZone={this.state.timezone}/>
+            <NextDaysContainer daily={weatherData.weatherDaily} numDays="7" timeZone={userLocationData.timezone}/>
           </Container>
-
           : <p>
-            We weren't able to determine your location. Please use search to find the location you are looking for
+            We weren&apos;t able to determine your location. Please use search to find the location you are looking for
           </p>
         }
       </div>
     )
   }
-}
 
 export default App;

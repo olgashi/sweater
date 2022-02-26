@@ -10,6 +10,7 @@ export default function NextDaysContainer(props) {
   const timezone = props.timeZone;
   moment.tz.setDefault(timezone);
   const dayWeatherArr = props.daily.slice(0, props.numDays);
+  
   const allDaysOutput =  dayWeatherArr.map(dayData => {
     let percipitation = null;
     if (dayData.hasOwnProperty('snow')) {
