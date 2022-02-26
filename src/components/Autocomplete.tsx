@@ -20,7 +20,7 @@ class Autocomplete extends Component {
     };
   }
 
-    onChange = e => {
+    onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       this.getSuggestionsFromAPI(e.target.value.trim())
   
       this.setState({
@@ -30,22 +30,22 @@ class Autocomplete extends Component {
       });
     };
 
-    onClick = e => {
-      console.log(e.target);
+    onClick = (e: React.MouseEvent<HTMLElement>) => {
+      const eventTarget = e.target;
       this.setState({
         activeSuggestion: 0,
         filteredSuggestions: [],
         showSuggestions: false,
         userInput: e.currentTarget.innerText,
-        lat: e.target.getAttribute('lat'),
-        lon: e.target.getAttribute('lon'),
-        city: e.target.getAttribute('city'),
-        region: e.target.getAttribute('region'),
-        country: e.target.getAttribute('country')
+        lat: eventTarget.getAttribute('lat'),
+        lon: eventTarget.getAttribute('lon'),
+        city: eventTarget.getAttribute('city'),
+        region: eventTarget.getAttribute('region'),
+        country: eventTarget.getAttribute('country')
       });
     };
 
-    onKeyDown = e => {
+    onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
       const { activeSuggestion, filteredSuggestions } = this.state;
   
       if (e.keyCode === 13) {
