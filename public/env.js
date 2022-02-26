@@ -1,4 +1,0 @@
-window.env = {
-  "OPEN_WEATHER_MAP_TOKEN": "55e1eb0bd87e6b1abab6acc75c5abbb9",
-  "WEATHER_API_TOKEN": "b2e1450470d748c8b53233840222402"
-};
