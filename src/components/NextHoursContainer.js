@@ -1,15 +1,27 @@
-import { Row, Col, Image } from 'react-bootstrap';
+import React from 'react';
+import { Row } from 'react-bootstrap';
 import NextSingleHour from './NextSingleHour';
-import { amPm } from '../utils/date-utils';
+const moment = require('moment-timezone');
 
 export default function NextHoursContainer(props) {
   const nextFiveHoursArr = props.hourly.slice(0, 5);
+  const timezone = props.timezone;
+  moment.tz.setDefault(timezone);
+
+
   const fiveHoursOutput =  nextFiveHoursArr.map(nextHour => {
-    //FIXME hour is wrong
-
-    return <NextSingleHour key={nextHour.dt} time={amPm(nextHour.dt)} iconUrl={`http://openweathermap.org/img/wn/${nextHour.weather[0].icon}.png`} temp={nextHour.temp} description={nextHour.weather[0].description}/>
+    const time = moment.unix(nextHour.dt).format('ha');
+    const hourDataPropObj = {
+      time,
+      description: nextHour.weather[0].description,
+      icon: `http://openweathermap.org/img/wn/${nextHour.weather[0].icon}.png`,
+      temp: Math.round((nextHour.temp)),
+      feelsLike: Math.round( nextHour.feels_like),
+      wind: Math.round(nextHour.wind_speed)
+    }
+    return <NextSingleHour {...hourDataPropObj}
+    key={nextHour.dt} />
   })
-
 
   return (
     <Row className="next-hours-weather" md={8}>

@@ -1,0 +1,1 @@
+export const INCHES_IN_MM = 0.039370078740157;

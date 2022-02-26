@@ -1,12 +1,34 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Image } from 'react-bootstrap';
+import { allWordsWoUpper } from '../utils/text-utils';
 
 export default function NextSingleHour (props) {
+  const {
+    time, description, icon, temp, feelsLike, wind
+  } = props;
+
   return (
-      <Col>
-        <Row md={5} className="day-weather">{props.time}</Row>
-        <Image src={props.iconUrl} />
-        <Row md={4} className="description-weather">{props.description}</Row>
-        <Row md={4} className="temp-weather">{Math.round(props.temp)} F</Row>
+      <Col className="single-hour-col">
+        <Row md={5} className="next-hour-time">{time}</Row>
+        <Col sm={4}></Col>
+        <Col sm={4}>
+        <Image src={icon} className="next-hour-icon"/>
+        </Col>
+        <Col sm={4}></Col>
+        <Row md={4} className="next-hour-description">{allWordsWoUpper(description)}</Row>
+        <Row md={4} className="next-hour-temp">{temp} F</Row>
+        <Row md={4} className="next-hour-feels-like">Feels Like: {feelsLike} F</Row>
+        <Row md={4} className="next-hour-wind">Wind: {wind} mph</Row>
       </Col>
   )
 }
+
+// NextSingleHour.propTypes = {
+//   time: PropTypes.string, 
+//   description: PropTypes.string, 
+//   icon: PropTypes.string, 
+//   temp: PropTypes.string, 
+//   feelsLike: PropTypes.string, 
+//   wind: PropTypes.string
+// }

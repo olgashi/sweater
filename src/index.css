@@ -5,35 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: aqua; */
 } 
 #root {
   background-color: #e3f4ff;
+  background-color: #d9e0f7;
+  background-color: #ffffff;
   color: #384155;
   padding-bottom: 50px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.today-container, .next-hours-weather, .single-day-weather {
-  /* border: 1px  solid; */
+.today-container, .next-hours-weather, .single-day-weather  {
   border-radius: 6px;
   padding: 10px;
-  /* box-shadow: 0 19px 38px rgba(170, 169, 169, 0.3), 0 15px 12px rgba(0,0,0,0.22); */
-  /* box-shadow: 0 3px 10px rgb(170 169 169 / 10%), 0 15px 12px rgb(0 0 0 / 12%); */
-  /* box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(168, 168, 192, 0.25) 0px 50px 100px -20px, rgba(124, 123, 123, 0.3) 0px 30px 60px -30px; */
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin-top: 10px;
-
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 
 .today-container {
+  padding-top: 1rem;
   background-color: #dce9f1;
-  height: 6rem;
+  height: auto;
 }
 
 .single-day-weather {
@@ -46,45 +41,105 @@ code {
 
 .next-hours-weather {
   background-color: #dce9f1;
-  height: 15vw;
+  background-color: #bcddf1;
+  height: auto;
   padding-left: 2rem;
 }
 
 .next-hours-weather div {
-  text-align: center;
+  text-align: right;
+  align-items: end;
+  padding-left: 2rem;
 }
 
-.header {
+.page-section-header {
   margin-top: 3rem;
   margin-bottom: 1.2rem;
 }
 
-.weekday-weather {
-  font-size: 1.9rem;
+.next-day-weekday {
+  padding-left: 0.5em;
+  font-size: 1.9vw;
   font-family: revert;
   font-weight: 700;
 }
 
-.temp-weather {
-  font-size: 1.2rem;
-  font-family: revert;
-  font-weight: 700;
+.next-day-description {
+  padding-left: 0.5em;
+  font-weight: 200;
+  font-size: 1.5em;
 }
 
-.description-weather {
-  font-size: 1.2rem;
-  font-family: revert;
-  font-weight: 700;
+.next-hour-icon {
+
 }
 
-.low-high-weather {
-  font-size: 1rem;
+.next-day-percipitation {
+  font-size: 1.3em;
+  font-weight: 500;
+
+}
+
+.next-day-feels-like {
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+.next-day-humidity {
+  font-size: 1.3em;
+
+}
+
+.next-day-sunset {
+  padding-top: 1.5em;
+}
+
+.next-day-sunrise {
+  padding-top: 1.5em;
+}
+
+.next-day-wind {
+  font-size: 1.3em;
+
+}
+
+.next-day-uvindex {
+  font-size: 1.3em;
+
+}
+
+.next-day-cloudness {
+  font-size: 1.3em;
+
+}
+
+.next-day-low-high {
+  font-size: 0.9em;
+  color: rgb(119, 117, 117);
+  
+
+}
+
+.next-day-low-high-temp {
+  font-size: 1.4vw;
+  font-family: revert;
+  font-weight: 500;
+}
+
+.next-hour-description {
+  font-size: 1.2em;
+  font-family: revert;
+  font-weight: 400;
+}
+
+.next-hour-low-high {
+  font-size: 1vw;
   font-family: revert;
   font-weight: 400;
 
 }
 
-.searchbar {
+.searchbar, .form-control{
   margin-top: 2rem;
   background-color:#0f203a;
   color: #FFF;
@@ -95,10 +150,11 @@ button:hover {
 
 }
 
-.day-weather {
-  font-size: 2rem;
+.next-hour-time {
+  font-size: 2.2vw;
   font-family: revert;
   font-weight: 700;
+  align-items: center;
 
 }
 
@@ -106,7 +162,131 @@ button:hover {
   margin-top: 5px;
   box-shadow: #1f4680;
   margin-bottom: 10px;
-  height: 10vw;
+  height: auto;
   background-color: #dce9f1;
 }
 
+.region {
+  font-weight: 700;
+}
+
+.single-hour-col {
+  align-items: center;
+  margin: 0 auto;
+}
+
+.responsive {
+  width: 80px;
+  height: 80px;
+  max-width: fit-content;
+  max-height: fit-content;
+}
+.searchbar.button {
+  padding: 0.2em 0.5rem
+}
+
+.current-weather-header {
+  margin-top: 1em;;
+}
+
+.no-search-results-message {
+  height: 30px;
+}
+
+.next-days-weather {
+  height: auto;
+}
+
+.alerts-container {
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  background-color: #f59648;
+  color: white;
+  font-weight: 600;
+  margin-top: 1rem;
+  height: auto;
+  width: auto;
+}
+
+.current-temp {
+  font-size: 2.1em;
+}
+
+.current-weather-description {
+  font-weight: 300;
+  font-size: 2.2em
+}
+
+.current-temp-low {
+  padding-top: 0.8em;
+  font-weight: 200;
+  font-size: 2.1em;
+}
+
+.current-temp-high {
+  font-weight: 400;
+  font-size: 2.1em;
+
+}
+
+.current-temp-feels-like {
+  padding-top: 1em;
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.current-temp-humidity {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.current-temp-wind {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.current-temp-sunset, .current-temp-sunrise {
+  padding-top: 1.5em;
+}
+
+.current-icon {
+  margin-top: 2em;
+  margin-left: 2em;
+  width: 79px;
+}
+
+.next-day-icon {
+  padding-top: 2.5em;
+  padding-right: 2.5em;
+}
+
+.next-hour-description {
+  font-size: 1.3em;
+  font-weight: 300;
+}
+
+.next-hour-temp {
+  font-size: 2em;
+  font-weight: 900;
+
+}
+
+.next-hour-feels-like {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.next-hour-wind {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.next-day-sunset-icon, .next-day-sunrise-icon {
+padding-right: 3em;
+}
+
+.logo {
+  position: absolute;
+  right: 8%;
+  width: 21%;
+}
