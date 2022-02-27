@@ -2,6 +2,7 @@
 
 Weather forecast app
 
+<<<<<<< Updated upstream
 ![](https://github.com/olgashi/sweater/blob/master/sweater-1.png)
 
 ![](https://github.com/olgashi/sweater/blob/master/sweater-2.png)
@@ -15,3 +16,5 @@ Weather forecast app
 
 ![](https://github.com/olgashi/sweater/blob/master/sweater-5.png)
 
+=======
+>>>>>>> Stashed changes

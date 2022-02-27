@@ -209,8 +209,8 @@ const [weatherData, setWeatherData] = useState({
             <NextHeader timeRange="days" timeRangeAmount="7" />
             <NextDaysContainer daily={weatherData.weatherDaily} numDays="7" timeZone={userLocationData.timezone}/>
           </Container>
-          : <p>
-            We weren&apos;t able to determine your location. Please use search to find the location you are looking for
+          : <p className="welcome">
+            Welcome to Sweater weather App! Please type in the name of the city or region you would like to see the weather forcast for.
           </p>
         }
       </div>
