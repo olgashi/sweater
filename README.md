@@ -18,13 +18,3 @@ To view the weather forecast, simply start typing in the name of the city or reg
 
 The application caches the weather result to minimize number of API calls. If the previously fetched data is less than 10 miniutes old, application will use the cached data to display the forecast. Otherwise, the new data is fatched, displayed and stored in the cache.
 
-
-
-![](https://github.com/olgashi/sweater/blob/master/sweater-2.png)
-
-![](https://github.com/olgashi/sweater/blob/master/sweater-3.png)
-
-![](https://github.com/olgashi/sweater/blob/master/sweater-1.png)
-
-![](https://github.com/olgashi/sweater/blob/master/sweater-5.png)
-
