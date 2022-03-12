@@ -1,10 +1,8 @@
 ## Sweater
+### Weather forecast application (React, React Bootstrap, localforage)
 [Deployed APP](https://sweater-weatherapp.herokuapp.com/)
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/41551585/157994093-cf7749f8-b5ee-433c-b474-3a9e79ad4292.gif)
-
-
-## Weather forecast application (React, React Bootstrap, localforage)
 
 Allows to view:
 - current
