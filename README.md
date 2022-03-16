@@ -4,15 +4,12 @@
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/41551585/157994093-cf7749f8-b5ee-433c-b474-3a9e79ad4292.gif)
 
-Allows to view:
-- current
-- 5 hour 
-- 7 day forecast 
+**Sweater** allows user to view current, 5 hour, 7 day weather forecast based on their IP address. By default the app tries to determine user location right away and then displays relevant weather (it won't be able to do some in certain cases, for example, if the user has adblockers enabled).
 
-for a chosen location.
+To view the weather forecast for a specific location, user can simply start typing in the name of the city or region in the search bar. Up to 10 suggestions will be prepoulated in the dropdown. Once one of the suggestions is clicked followed by a click on 'Get Weather' button, the page will update without a refresh and dsiplay the new weather data.
 
+The application caches the weather result to minimize number of API calls. 
 
-To view the weather forecast, simply start typing in the name of the city or region in the search bar. Up to 10 suggestions will be prepoulated in the dropdown. Once one of the suggestions is clicked followed by a click on 'Get Weather' button, the page will update with the new weather data.
+If a user had previously requested weather for and the data is less than 10 miniutes old (because weather data updates no less than every 10 minutes) application will use the cached data to display the forecast.
 
-The application caches the weather result to minimize number of API calls. If the previously fetched data is less than 10 miniutes old, application will use the cached data to display the forecast. Otherwise, the new data is fatched, displayed and stored in the cache.
-
+If the user had not previously requested weather for the requested location or the existing/cached data is over 10 minutes old, Sweater will make a new request to get the weather data, which is then displayed to the user and also stored in the cache for later use. The app uses localforage as a caching solution. 
