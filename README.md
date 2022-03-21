@@ -13,3 +13,7 @@ The application caches the weather result to minimize number of API calls.
 If a user had previously requested weather for and the data is less than 10 miniutes old (because weather data updates no less than every 10 minutes) application will use the cached data to display the forecast.
 
 If the user had not previously requested weather for the requested location or the existing/cached data is over 10 minutes old, Sweater will make a new request to get the weather data, which is then displayed to the user and also stored in the cache for later use. The app uses localforage as a caching solution. 
+
+TODO:
+- Deploy to AWS
+- Fix the input field (doesnt clear when user clicks 'Get Weather')
