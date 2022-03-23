@@ -20,5 +20,6 @@ TODO:
 - Convert remaining class components into functional components
 - Fix the input field (doesnt clear when user clicks 'Get Weather')
 - Add tests (unit, ent-to-end - Cypress, jest)
+- Dockerize
 - Deploy to AWS
 - Set up CI/CD pipeline
