@@ -13,6 +13,7 @@ export default function SearchBar(props) {
           Get Weather
         </Button>
       </Col>
+      
       <Col md={6}>
       <div>
         <img src={require('../images/logo5.png')} className="logo"></img>

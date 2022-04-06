@@ -31,7 +31,6 @@ class Autocomplete extends Component {
     };
 
     onClick = e => {
-      console.log(e.target);
       this.setState({
         activeSuggestion: 0,
         filteredSuggestions: [],
@@ -87,7 +86,6 @@ class Autocomplete extends Component {
               APICallTimer: null,
               filteredSuggestions: data.data
             })
-            console.log(data)
           }
             ).catch(error => console.log(error));
         }, 300);

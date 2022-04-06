@@ -86,7 +86,6 @@ const [weatherData, setWeatherData] = useState({
 
           fetchedWeatherData['data_cached_timestamp'] = new Date();
           localforage.setItem(key, fetchedWeatherData).then(function (fetchedWeatherData) {
-            console.log('Setting item in cache', JSON.stringify(fetchedWeatherData));
           });
           return fetchedWeatherData;
         }).then(updatedWeatherData => {
@@ -164,7 +163,6 @@ const [weatherData, setWeatherData] = useState({
   }
 
   function filterHourlyWeatherToCurrentHours(arr, data) {
-  console.log(data);
     moment.tz.setDefault(userLocationData.timezone);
     let now = moment();
 
