@@ -5,7 +5,7 @@ export default function Alerts(props) {
   return (
     <Container className="alerts-container">
       <span>
-      Warning! Alerts present! Type: {alerts}
+      Warning! Alerts: Type: {alerts}
       </span>
     </Container>
   )
