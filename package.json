@@ -16,7 +16,6 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
     "node": "^16.11.1",
-    "prop-types": "^15.8.1",
     "public-ip": "^5.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
@@ -26,8 +25,8 @@
     "zipcodes": "^8.0.0"
   },
   "scripts": {
-    "start": "react-dotenv && react-scripts --max_old_space_size=4096 start",
-    "build": "react-dotenv && react-scripts --max_old_space_size=4096 build",
+    "start": "react-dotenv && react-scripts start",
+    "build": "react-dotenv && react-scripts build",
     "serve": "react-dotenv && serve build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -53,7 +52,8 @@
   "react-dotenv": {
     "whitelist": [
       "OPEN_WEATHER_MAP_TOKEN",
-      "WEATHER_API_TOKEN"
+      "WEATHER_API_TOKEN",
+      "IP_TOKEN"
     ]
   },
   "devDependencies": {
