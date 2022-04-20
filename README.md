@@ -16,8 +16,7 @@ If the user had not previously requested weather for the requested location or t
 
 TODO:
 - Finish Typescript refactor
-- Convert remaining class components into functional components
-- Fix the input field (doesnt clear when user clicks 'Get Weather')
+- Add better description of app architecture (including charts), include recent updates in the description
 - Add tests (unit, ent-to-end - Cypress, jest)
 - Dockerize
 - Deploy to DO
