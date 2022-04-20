@@ -1,1 +1,2 @@
 export const INCHES_IN_MM = 0.039370078740157;
+export const CACHE_EXPIRATION_MINUTES = 10;
