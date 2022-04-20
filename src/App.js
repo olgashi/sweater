@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {filterHourlyWeatherToCurrentHours, getAlerts, getLocationLookupDataFromInput} from  './utils/general-utils';
-import {CACHE_EXPIRATION_MINUTES } from './utils/const-utils'
+import {CACHE_EXPIRATION_MINUTES, NUM_DAYS_TO_DISPLAY, NUM_HOURS_TO_DISPLAY, UNIT_OF_DURATION_DAYS, UNIT_OF_DURATION_HOURS } from './utils/const-utils'
 
 import CurrentWeatherHeader from './components/CurrentWeatherHeader';
 import CurrentWeather from './components/CurrentWeather';
@@ -191,10 +191,10 @@ const [weatherData, setWeatherData] = useState({
               />
               {weatherData.alerts ?
                 <Alerts alerts={weatherData.alerts}/> : <></>}
-            <NextHeader timeRange="hours" timeRangeAmount="5" />
+            <NextHeader timeRange={UNIT_OF_DURATION_HOURS} timeRangeAmount={NUM_HOURS_TO_DISPLAY} />
             <NextHoursContainer hourly={filterHourlyWeatherToCurrentHours(weatherData.weatherHourly, userLocationData)} timezone={weatherData.timezone}/>
-            <NextHeader timeRange="days" timeRangeAmount="7" />
-            <NextDaysContainer daily={weatherData.weatherDaily} numDays="7" timeZone={weatherData.timezone}/>
+            <NextHeader timeRange={UNIT_OF_DURATION_DAYS} timeRangeAmount={NUM_DAYS_TO_DISPLAY} />
+            <NextDaysContainer daily={weatherData.weatherDaily} numDays={NUM_DAYS_TO_DISPLAY} timeZone={weatherData.timezone}/>
           </Container>
           : <p className="welcome">
             Welcome to Sweater weather App! Please type in the name of the city or region you would like to see the weather forcast for.
