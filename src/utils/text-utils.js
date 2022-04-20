@@ -1,4 +1,4 @@
-export function allWordsToUpper(arr) {
+export function allWordsWoUpper(arr) {
   return arr.split(' ').map(word => word.slice(0, 1).toUpperCase() + word.slice(1)).join(' ');
 }
 

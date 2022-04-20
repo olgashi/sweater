@@ -1,18 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Image } from 'react-bootstrap';
-import { allWordsToUpper } from '../utils/text-utils';
+import { allWordsWoUpper } from '../utils/text-utils';
 const moment = require('moment-timezone');
 
 export default function (props) {
-  const { feels_like, humidity, wind_speed, temp, sunset, sunrise, dt} = props.weatherData.weatherCurrent;
-  const { city, region, country} = props.userLocation;
-
-  const { description, icon } = props.weatherData.weatherCurrent.weather[0];
-  const todaysTemp = props.weatherData.weatherToday;
-  const todayLow = todaysTemp.temp ? todaysTemp.temp.min : null;
-  const todayHigh = todaysTemp.temp ? todaysTemp.temp.max : null;
-  const timezone = props.weatherData.timezone;
-
+  const { timezone, feels_like, humidity, wind_speed, temp, sunset, sunrise} = props.currentWeatherData;
+  const { city, region, country } = props;
+  const { description, icon } = props.currentWeatherData.weather[0];
   moment.tz.setDefault(timezone);
   const locationName = `${city ? city + ', ' : ''} ${region ? region + ',' : ''} ${country ? country: ''}`
   return (
@@ -21,18 +16,18 @@ export default function (props) {
         <Row className="region">{locationName}</Row>
         <Row className="temp-weather">
           <span className="current-temp">
-           {Math.round(temp)} F
+          {Math.round(temp)} F
           </span>
         </Row>
-        <Row md={5} className="current-weather-description">{allWordsToUpper(description)}</Row>
+        <Row md={5} className="current-weather-description">{allWordsWoUpper(description)}</Row>
       </Col>
       <Col md={2}>
       <Image src={`http://openweathermap.org/img/wn/${icon}.png`} className="current-icon">
       </Image>
       </Col>
       <Col md={2}>
-        <Row md={4} className="current-temp-high">High: {Math.round(todayHigh)} F</Row>
-        <Row md={4} className="current-temp-low">Low: {Math.round(todayLow)} F</Row>
+        <Row md={4} className="current-temp-low">Low: {Math.round(props.lowTemp)} F</Row>
+        <Row md={4} className="current-temp-high">High: {Math.round(props.highTemp)} F</Row>
       </Col>
       <Col md={2}>
         <Row className="current-temp-feels-like">Feels Like: {Math.round(feels_like)} F</Row>
@@ -40,26 +35,27 @@ export default function (props) {
         <Row className="current-temp-humidity">Humidity: {Math.round(humidity)}%</Row>
       </Col>
       <Col md={1}>
-      </Col>
-
+        </Col>
       <Col md={1}>
-        <Row className="current-temp-sunset">       
+        <Row className="current-temp-sunset">
+        sunset:         
         <div>
           <img src={require('../images/sunset.png')}></img>
         </div>
         </Row>
-        <Row className="current-temp-sunset-time">
+        <Row className="current-temp-sunset">
         {moment.unix(sunset).format('h:mm a')}
         </Row>
       </Col>
-
-      <Col md={1}>
+    
+        <Col md={1}>
         <Row className="current-temp-sunrise">
+        sunrise:
         <div>
           <img src={require('../images/sunrise.png')}></img>
         </div>
          </Row>
-        <Row className="current-temp-sunrise-time">
+        <Row className="current-temp-sunrise">
          {moment.unix(sunrise).format('h:mm a')}
 
         </Row>

@@ -27,7 +27,7 @@ code {
 
 .today-container {
   padding-top: 1rem;
-  background-color: #a4f288;
+  background-color: #dce9f1;
   height: auto;
 }
 
@@ -59,20 +59,25 @@ code {
 
 .next-day-weekday {
   padding-left: 0.5em;
-  font-size: 2.5vw;
+  font-size: 1.9vw;
   font-family: revert;
-  font-weight: 300;
+  font-weight: 700;
 }
 
 .next-day-description {
   padding-left: 0.5em;
-  font-weight: 700;
+  font-weight: 200;
   font-size: 1.5em;
+}
+
+.next-hour-icon {
+
 }
 
 .next-day-percipitation {
   font-size: 1.3em;
   font-weight: 500;
+
 }
 
 .next-day-feels-like {
@@ -109,9 +114,10 @@ code {
 }
 
 .next-day-low-high {
-  font-size: 1.2em;
-  color: white;
-  font-weight: 800;
+  font-size: 0.9em;
+  color: rgb(119, 117, 117);
+  
+
 }
 
 .next-day-low-high-temp {
@@ -157,7 +163,7 @@ button:hover {
   box-shadow: #1f4680;
   margin-bottom: 10px;
   height: auto;
-  background-color: #a1ddf2;
+  background-color: #dce9f1;
 }
 
 .region {
@@ -206,11 +212,6 @@ button:hover {
   font-size: 2.1em;
 }
 
-.current-time {
-  padding-top: 1em;
-  font-size: medium;
-}
-
 .current-weather-description {
   font-weight: 300;
   font-size: 2.2em
@@ -245,12 +246,7 @@ button:hover {
 }
 
 .current-temp-sunset, .current-temp-sunrise {
-  padding-top: 2.2em;
-}
-
-.current-temp-sunset-time, .current-temp-sunrise-time {
-  padding-top: 1.2em;
-  font-size: 1.1em;
+  padding-top: 1.5em;
 }
 
 .current-icon {
@@ -264,7 +260,7 @@ button:hover {
   padding-right: 2.5em;
 }
 
-.next-hour-description, .current-time {
+.next-hour-description {
   font-size: 1.3em;
   font-weight: 300;
 }

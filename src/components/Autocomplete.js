@@ -1,8 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from 'axios';
 import env from "react-dotenv";
 
-import { Row, Col, Button } from 'react-bootstrap';
 class Autocomplete extends Component {
   constructor(props) {
     super(props);
@@ -19,8 +18,6 @@ class Autocomplete extends Component {
       region: '',
       country: ''
     };
-
-    this.handleUserSearch = this.handleUserSearch.bind(this);
   }
 
     onChange = e => {
@@ -62,7 +59,7 @@ class Autocomplete extends Component {
         }
         this.setState({ activeSuggestion: activeSuggestion - 1 });
       }
-
+      // User pressed the down arrow, increment the index
       else if (e.keyCode === 40) {
         if (activeSuggestion - 1 === filteredSuggestions.length) {
           return;
@@ -72,6 +69,7 @@ class Autocomplete extends Component {
     };
 
     getSuggestionsFromAPI() {
+      
       if (this.state.APICallTimer) {
         clearTimeout(this.state.APICallTimer);
         this.setState({
@@ -82,27 +80,21 @@ class Autocomplete extends Component {
           const queryString = this.state.userInput;
           const url = `https://api.weatherapi.com/v1/search.json?key=${env.WEATHER_API_TOKEN}&q=${queryString}`;
   
+
           axios.get(url).then(data => {
             this.setState({
               APICallTimer: null,
               filteredSuggestions: data.data
             })
-          }).catch(error => console.log(error));
+          }
+            ).catch(error => console.log(error));
         }, 300);
 
         this.setState({ APICallTimer: timer })
       } 
     }
 
-    handleUserSearch() {
-      if (this.props) {
-        this.props.buttonOnClick()
-        this.setState({userInput: ""})
-      }
-    }
-
     render() {
-
       const {
         onChange,
         onClick,
@@ -131,6 +123,7 @@ class Autocomplete extends Component {
               {filteredSuggestions.map((suggestion, index) => {
                 let className;
   
+                // Flag the active suggestion with a class
                 if (index === activeSuggestion) {
                   className = "suggestion-active";
                 }
@@ -155,10 +148,10 @@ class Autocomplete extends Component {
         }
       }
 
+
+    
     return (
-      <Row>
-       <Col md={7}>
-        
+      <Fragment>
         <input
           className="form-control form-control-sm"
           type="text"
@@ -171,16 +164,9 @@ class Autocomplete extends Component {
           region={region} 
           country={country}
           id="user-input-location-search"
-          ref={this.inputFieldRef}
         />
         {suggestionsListComponent}
-        </Col>
-        <Col md={5}>
-        <Button variant="outline-secondary" onClick={this.handleUserSearch} className="searchbar button">
-          Get Weather
-        </Button>
-        </Col>
-      </Row>
+      </Fragment>
     );
   }
 }
