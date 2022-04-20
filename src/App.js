@@ -41,7 +41,7 @@ const [weatherData, setWeatherData] = useState({
 })
 
   async function getData () {
-    await axios.get(`https://ipinfo.io?token=${env.IP_TOKEN}`).then(responseLocation => responseLocation.data).then((data) => {
+    await axios.get(`https://ipinfo.io?token=b1ca041c2a1875`).then(responseLocation => responseLocation.data).then((data) => {
       setUserLocationData({ 
       zip: data.postal, 
       city: data.city, 
