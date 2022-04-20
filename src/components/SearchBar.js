@@ -5,16 +5,11 @@ import Autocomplete from './Autocomplete';
 export default function SearchBar(props) {
   return (
     <Row>
-        <Col md={3}>
-        <Autocomplete className="searchbar"/>
+        <Col md={8}>
+        <Autocomplete className="searchbar" buttonOnClick={props.handleClick}/>
         </Col>
-        <Col md={3}>
-        <Button variant="outline-secondary" onClick={props.handleClick} className="searchbar button">
-          Get Weather
-        </Button>
-      </Col>
       
-      <Col md={6}>
+      <Col md={4}>
       <div>
         <img src={require('../images/logo5.png')} className="logo"></img>
       </div>
