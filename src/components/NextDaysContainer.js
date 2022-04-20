@@ -9,10 +9,10 @@ export default function NextDaysContainer(props) {
   const {weatherDaily, timezone, numDays} = props;
 
   moment.tz.setDefault(timezone);
-  const allDaysOutput =  weatherDaily.slice(0, numDays).map(dayData => {
+  const allDaysOutput =  weatherDaily.slice(0, numDays).map(dayDataObj => {
 
-    return <NextSingleDay {...generateDailyWeatherDataObj(dayData, timezone)}
-    key={dayData.dt} 
+    return <NextSingleDay {...generateDailyWeatherDataObj({ dayDataObj, timezone })}
+    key={dayDataObj.dt} 
     />
   })
 
