@@ -6,7 +6,6 @@ const moment = require('moment-timezone');
 export default function (props) {
   const { feels_like, humidity, wind_speed, temp, sunset, sunrise, dt} = props.weatherData.weatherCurrent;
   const { city, region, country} = props.userLocation;
-
   const { description, icon } = props.weatherData.weatherCurrent.weather[0];
   const todaysTemp = props.weatherData.weatherToday;
   const todayLow = todaysTemp.temp ? todaysTemp.temp.min : null;
@@ -14,7 +13,8 @@ export default function (props) {
   const timezone = props.weatherData.timezone;
 
   moment.tz.setDefault(timezone);
-  const locationName = `${city ? city + ', ' : ''} ${region ? region + ',' : ''} ${country ? country: ''}`
+  const locationName = `${city ? city + ', ' : ''} ${region ? region + ',' : ''} ${country ? country: ''}`;
+
   return (
     <Row className="today-container" md={8}>
       <Col md={3}>
@@ -49,7 +49,7 @@ export default function (props) {
         </div>
         </Row>
         <Row className="current-temp-sunset-time">
-        {moment.unix(sunset).format('h:mm a')}
+          {moment.unix(sunset).format('h:mm a')}
         </Row>
       </Col>
 
@@ -61,7 +61,6 @@ export default function (props) {
          </Row>
         <Row className="current-temp-sunrise-time">
          {moment.unix(sunrise).format('h:mm a')}
-
         </Row>
       </Col>
     </Row>
