@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Row, Col, Image } from 'react-bootstrap';
 import { allWordsToUpper } from '../utils/text-utils';
 
