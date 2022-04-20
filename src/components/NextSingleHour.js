@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Image } from 'react-bootstrap';
-import { allWordsWoUpper } from '../utils/text-utils';
+import { allWordsToUpper } from '../utils/text-utils';
 
 export default function NextSingleHour (props) {
   const {
@@ -16,19 +16,10 @@ export default function NextSingleHour (props) {
         <Image src={icon} className="next-hour-icon"/>
         </Col>
         <Col sm={4}></Col>
-        <Row md={4} className="next-hour-description">{allWordsWoUpper(description)}</Row>
+        <Row md={4} className="next-hour-description">{allWordsToUpper(description)}</Row>
         <Row md={4} className="next-hour-temp">{temp} F</Row>
         <Row md={4} className="next-hour-feels-like">Feels Like: {feelsLike} F</Row>
         <Row md={4} className="next-hour-wind">Wind: {wind} mph</Row>
       </Col>
   )
 }
-
-// NextSingleHour.propTypes = {
-//   time: PropTypes.string, 
-//   description: PropTypes.string, 
-//   icon: PropTypes.string, 
-//   temp: PropTypes.string, 
-//   feelsLike: PropTypes.string, 
-//   wind: PropTypes.string
-// }
