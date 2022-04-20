@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default function CurrentWeatherHeader() {
-  return <h2 className="current-weather-header">Current Weather</h2>;
+export default function CurrentWeatherHeader(props) {
+  const { dateHook, timezone } = props;
+  const { dateTime } = dateHook(timezone);
+  return <h2 className="current-weather-header">Weather as of {dateTime}</h2>;
 }
 
