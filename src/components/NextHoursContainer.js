@@ -10,11 +10,11 @@ export default function NextHoursContainer(props) {
 
   moment.tz.setDefault(timezone);
 
-  const fiveHoursOutput =  hourly.slice(0, NUM_HOURS_TO_DISPLAY).map(nextHour => {
-    const time = moment.unix(nextHour.dt).format('ha');
+  const fiveHoursOutput =  hourly.slice(0, NUM_HOURS_TO_DISPLAY).map(nextHourDataObj => {
+    const time = moment.unix(nextHourDataObj.dt).format('ha');
 
-    return <NextSingleHour {...generateHourlyWeatherDataObj({ nextHour, time })}
-    key={nextHour.dt} />
+    return <NextSingleHour {...generateHourlyWeatherDataObj({ nextHourDataObj, time })}
+    key={nextHourDataObj.dt} />
   })
 
   return (
