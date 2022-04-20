@@ -194,7 +194,7 @@ const [weatherData, setWeatherData] = useState({
             <NextHeader timeRange={UNIT_OF_DURATION_HOURS} timeRangeAmount={NUM_HOURS_TO_DISPLAY} />
             <NextHoursContainer hourly={filterHourlyWeatherToCurrentHours(weatherData.weatherHourly, userLocationData)} timezone={weatherData.timezone}/>
             <NextHeader timeRange={UNIT_OF_DURATION_DAYS} timeRangeAmount={NUM_DAYS_TO_DISPLAY} />
-            <NextDaysContainer daily={weatherData.weatherDaily} numDays={NUM_DAYS_TO_DISPLAY} timeZone={weatherData.timezone}/>
+            <NextDaysContainer weatherDaily={weatherData.weatherDaily} numDays={NUM_DAYS_TO_DISPLAY} timeZone={weatherData.timezone}/>
           </Container>
           : <p className="welcome">
             Welcome to Sweater weather App! Please type in the name of the city or region you would like to see the weather forcast for.
