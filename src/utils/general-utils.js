@@ -46,7 +46,7 @@ export function determinePercipitation(dayDataObj) {
   return percipitation;
 }
 
-export function generateDailyWeatherDataObj(dayDataObj, timezone) {
+export function generateDailyWeatherDataObj({ dayDataObj, timezone }) {
   return {
     day: convertToWeekDayShort(dayDataObj.dt, timezone),
     description: dayDataObj.weather[0].description,
@@ -62,4 +62,15 @@ export function generateDailyWeatherDataObj(dayDataObj, timezone) {
     uvIndex: `${dayDataObj.uvi} - ${determineUVSevereness(dayDataObj.uvi)}`,
     percipitation: determinePercipitation(dayDataObj),
   };
+}
+
+export function generateHourlyWeatherDataObj({ nextHourDataObj, time }) {
+  return {
+    time,
+    description: nextHourDataObj.weather[0].description,
+    icon: `http://openweathermap.org/img/wn/${nextHourDataObj.weather[0].icon}.png`,
+    temp: Math.round((nextHourDataObj.temp)),
+    feelsLike: Math.round( nextHourDataObj.feels_like),
+    wind: Math.round(nextHourDataObj.wind_speed)
+  }
 }
