@@ -5,12 +5,12 @@ import { convertToWeekDayShort } from '../utils/date-utils';
 import { determineUVSevereness } from '../utils/text-utils';
 import { INCHES_IN_MM } from '../utils/const-utils';
 const moment = require('moment-timezone');
-
+// TODO cleanup this component
 export default function NextDaysContainer(props) {
   const timezone = props.timeZone;
   moment.tz.setDefault(timezone);
   const dayWeatherArr = props.daily.slice(0, props.numDays);
-  
+  // TODO should be extracted to a function: (parseFloat(dayData.snow) * INCHES_IN_MM).toFixed(2)}
   const allDaysOutput =  dayWeatherArr.map(dayData => {
     let percipitation = null;
     if (dayData.hasOwnProperty('snow')) {
@@ -18,6 +18,8 @@ export default function NextDaysContainer(props) {
     } else if (dayData.hasOwnProperty('rain')) {
       percipitation =  { type: 'Rain', value: (parseFloat(dayData.rain) * INCHES_IN_MM).toFixed(2)};
     }
+
+    // TODO any way to clean this up? very messy..
     const dayDataPropObj = {
       day: convertToWeekDayShort(dayData.dt, timezone),
       description: dayData.weather[0].description,
@@ -38,7 +40,6 @@ export default function NextDaysContainer(props) {
     key={dayData.dt} 
     />
   })
-
 
   return (
     <Container className="next-days-weather" md={8}>
