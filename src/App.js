@@ -37,7 +37,7 @@ const [weatherData, setWeatherData] = useState({
   weatherCurrent: null,
   weatherToday: null,
   weatherHourly: null,
-  weatherDaily: null
+  weatherDaily: null,
 })
 
   async function getData () {
@@ -65,6 +65,24 @@ const [weatherData, setWeatherData] = useState({
       (async () => await getData())();
     }
   })
+
+  const useDate = (timezone) => {
+    const [today, setDate] = React.useState(moment().tz(timezone).format('h:mm a'));
+  
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+        setDate(new Date());
+      }, 60 * 1000);
+      return () => {
+        clearInterval(timer); // Return a funtion to clear the timer 
+      }
+    }, []);
+    const dateTime = moment().tz(timezone).format('h:mm a');
+  
+    return {
+      dateTime
+    };
+  };
 
   async function getWeatherData(data) {
     const { loc } = data;
@@ -164,9 +182,9 @@ const [weatherData, setWeatherData] = useState({
           weatherData.weatherToday && 
           weatherData.weatherHourly && 
           weatherData.weatherDaily
-        ?
+          ?
           <Container>
-            <CurrentWeatherHeader />
+            <CurrentWeatherHeader dateHook={useDate} timezone={weatherData.timezone}/>
             <CurrentWeather 
               userLocation={userLocationData}
               weatherData={weatherData}
