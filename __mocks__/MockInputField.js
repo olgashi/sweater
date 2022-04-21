@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 export default function MockInputField(prop) {
-  return ( 
-
-      <input placeholder="Search City, Region or Zip Code"
+  return (
+    <input
+      placeholder="Search City, Region or Zip Code"
       className="form-control form-control-sm"
       type="text"
       city="Lambeth"
@@ -14,7 +14,6 @@ export default function MockInputField(prop) {
       lon="-0.12"
       lat="51.49"
       onChange={prop.handleOnchange}
-      />
-
-  )
+    />
+  );
 }

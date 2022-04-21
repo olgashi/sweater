@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-const moment = require('moment');
-require('moment-timezone');
+import { useEffect, useState } from "react";
+const moment = require("moment");
+require("moment-timezone");
 
 const useDate = (timezone) => {
-  const [today, setDate] = useState(moment().tz(timezone).format('h:mm a'));
+  const [, setDate] = useState(moment().tz(timezone).format("h:mm a"));
 
   useEffect(() => {
-      const timer = setInterval(() => {
+    const timer = setInterval(() => {
       setDate(new Date());
     }, 60 * 1000);
     return () => {
-      clearInterval(timer); // Return a funtion to clear the timer 
-    }
+      clearInterval(timer); // Return a funtion to clear the timer
+    };
   }, []);
-  const dateTime = moment().tz(timezone).format('h:mm a');
+  const dateTime = moment().tz(timezone).format("h:mm a");
 
   return {
-    dateTime
+    dateTime,
   };
 };
 
-export default useDate
+export default useDate;

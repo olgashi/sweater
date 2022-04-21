@@ -1,6 +1,6 @@
-import {allWordsToUpper, determineUVSevereness} from './text-utils'
+import { allWordsToUpper, determineUVSevereness } from "./text-utils";
 
-test('allWordsToUpper converts each word\'s first letter to upper case, with words must be separated by space', () => {
+test("allWordsToUpper converts each word's first letter to upper case, with words must be separated by space", () => {
   expect(allWordsToUpper("hello world")).toBe("Hello World");
   expect(allWordsToUpper("Hello World")).toBe("Hello World");
   expect(allWordsToUpper("hEllo World")).toBe("HEllo World");
@@ -14,7 +14,7 @@ test('allWordsToUpper converts each word\'s first letter to upper case, with wor
   expect(allWordsToUpper([])).toBe("");
 });
 
-test('Translates UV level from integer to its appropriate name (as a string)', () => {
+test("Translates UV level from integer to its appropriate name (as a string)", () => {
   expect(determineUVSevereness("hello world")).toBe("");
   expect(determineUVSevereness("")).toBe("");
   expect(determineUVSevereness(0)).toBe("Low");
@@ -32,4 +32,3 @@ test('Translates UV level from integer to its appropriate name (as a string)', (
   expect(determineUVSevereness([])).toBe("");
   expect(determineUVSevereness({})).toBe("");
 });
-

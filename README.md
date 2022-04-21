@@ -1,5 +1,7 @@
 ## Sweater
+
 ### Weather forecast application (React, React Bootstrap, localforage)
+
 [Deployed APP](https://sweater-weatherapp.herokuapp.com/)
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/41551585/157994093-cf7749f8-b5ee-433c-b474-3a9e79ad4292.gif)
@@ -8,13 +10,14 @@
 
 To view the weather forecast for a specific location, user can simply start typing in the name of the city or region in the search bar. Up to 10 suggestions will be prepoulated in the dropdown. Once one of the suggestions is clicked followed by a click on 'Get Weather' button, the page will update without a refresh and dsiplay the new weather data.
 
-The application caches the weather result to minimize number of API calls. 
+The application caches the weather result to minimize number of API calls.
 
 If a user had previously requested weather for and the data is less than 10 miniutes old (because weather data updates no less than every 10 minutes) application will use the cached data to display the forecast.
 
-If the user had not previously requested weather for the requested location or the existing/cached data is over 10 minutes old, Sweater will make a new request to get the weather data, which is then displayed to the user and also stored in the cache for later use. The app uses localforage as a caching solution. 
+If the user had not previously requested weather for the requested location or the existing/cached data is over 10 minutes old, Sweater will make a new request to get the weather data, which is then displayed to the user and also stored in the cache for later use. The app uses localforage as a caching solution.
 
 TODO:
+
 - Finish Typescript refactor
 - Add better description of app architecture (including charts), include recent updates in the description
 - Add tests (unit, ent-to-end - Cypress, jest)

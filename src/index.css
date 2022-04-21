@@ -1,11 +1,11 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} 
+}
 #root {
   background-color: #e3f4ff;
   background-color: #d9e0f7;
@@ -15,10 +15,13 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-.today-container, .next-hours-weather, .single-day-weather  {
+.today-container,
+.next-hours-weather,
+.single-day-weather {
   border-radius: 6px;
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -129,14 +132,15 @@ code {
   font-weight: 400;
 }
 
-.searchbar, .form-control{
+.searchbar,
+.form-control {
   margin-top: 2rem;
-  background-color:#0f203a;
-  color: #FFF;
+  background-color: #0f203a;
+  color: #fff;
 }
 
 button:hover {
-  background-color:#1f4680;
+  background-color: #1f4680;
 }
 
 .next-hour-time {
@@ -170,11 +174,11 @@ button:hover {
   max-height: fit-content;
 }
 .searchbar.button {
-  padding: 0.2em 0.5rem
+  padding: 0.2em 0.5rem;
 }
 
 .current-weather-header {
-  margin-top: 1em;;
+  margin-top: 1em;
 }
 
 .no-search-results-message {
@@ -207,7 +211,7 @@ button:hover {
 
 .current-weather-description {
   font-weight: 300;
-  font-size: 2.2em
+  font-size: 2.2em;
 }
 
 .current-temp-low {
@@ -237,11 +241,13 @@ button:hover {
   font-weight: 300;
 }
 
-.current-temp-sunset, .current-temp-sunrise {
+.current-temp-sunset,
+.current-temp-sunrise {
   padding-top: 2.2em;
 }
 
-.current-temp-sunset-time, .current-temp-sunrise-time {
+.current-temp-sunset-time,
+.current-temp-sunrise-time {
   padding-top: 1.2em;
   font-size: 1.1em;
 }
@@ -257,7 +263,8 @@ button:hover {
   padding-right: 2.5em;
 }
 
-.next-hour-description, .current-time {
+.next-hour-description,
+.current-time {
   font-size: 1.3em;
   font-weight: 300;
 }
@@ -277,7 +284,8 @@ button:hover {
   font-weight: 300;
 }
 
-.next-day-sunset-icon, .next-day-sunrise-icon {
+.next-day-sunset-icon,
+.next-day-sunrise-icon {
   padding-right: 3em;
 }
 
