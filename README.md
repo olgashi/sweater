@@ -22,3 +22,5 @@ TODO:
 - Dockerize
 - Deploy to DO
 - Set up CI/CD pipeline
+
+[![Node.js CI](https://github.com/olgashi/sweater/actions/workflows/node.js.yml/badge.svg)](https://github.com/olgashi/sweater/actions/workflows/node.js.yml)
