@@ -57,4 +57,5 @@ test('generateHourlyWeatherDataObj composes data object of appropriate form', ()
   // expect(generateHourlyWeatherDataObj([])).toEqual({});
   // expect(generateHourlyWeatherDataObj(null)).toEqual({});
   // expect(generateHourlyWeatherDataObj(undefined)).toEqual({});
+  //FIXME breaks
 });
