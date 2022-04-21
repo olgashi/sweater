@@ -1,26 +1,20 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 import NextSingleHour from './NextSingleHour';
+import { generateHourlyWeatherDataObj } from '../utils/general-utils';
+import { NUM_HOURS_TO_DISPLAY } from '../utils/const-utils';
 const moment = require('moment-timezone');
 
 export default function NextHoursContainer(props) {
-  const nextFiveHoursArr = props.hourly.slice(0, 5);
-  const timezone = props.timezone;
-  moment.tz.setDefault(timezone);
+  const { weatherHourly, timeZone } = props;
 
+  moment.tz.setDefault(timeZone);
 
-  const fiveHoursOutput =  nextFiveHoursArr.map(nextHour => {
-    const time = moment.unix(nextHour.dt).format('ha');
-    const hourDataPropObj = {
-      time,
-      description: nextHour.weather[0].description,
-      icon: `http://openweathermap.org/img/wn/${nextHour.weather[0].icon}.png`,
-      temp: Math.round((nextHour.temp)),
-      feelsLike: Math.round( nextHour.feels_like),
-      wind: Math.round(nextHour.wind_speed)
-    }
-    return <NextSingleHour {...hourDataPropObj}
-    key={nextHour.dt} />
+  const fiveHoursOutput = weatherHourly.slice(0, NUM_HOURS_TO_DISPLAY).map(nextHourDataObj => {
+    const time = moment.unix(nextHourDataObj.dt).format('ha');
+
+    return <NextSingleHour {...generateHourlyWeatherDataObj({ nextHourDataObj, time })}
+    key={nextHourDataObj.dt} />
   })
 
   return (

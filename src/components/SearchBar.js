@@ -11,7 +11,7 @@ export default function SearchBar(props) {
       
       <Col md={4}>
       <div>
-        <img src={require('../images/logo5.png')} className="logo"></img>
+        <img src={require('../images/logo5.png')} className="logo" alt="Sweater Weather App logo"></img>
       </div>
       </Col>
     </Row>

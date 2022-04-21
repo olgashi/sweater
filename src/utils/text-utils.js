@@ -1,9 +1,16 @@
-export function allWordsToUpper(arr) {
-  return arr.split(' ').map(word => word.slice(0, 1).toUpperCase() + word.slice(1)).join(' ');
+export function allWordsToUpper(str) {
+  if (typeof str !== "string") {
+    return ""
+  }
+  return str.split(' ').map(word => word.slice(0, 1).toUpperCase() + word.slice(1)).join(' ');
 }
 
 export function determineUVSevereness(uv) {
-  const roundedUV = Math.round(parseFloat(uv));
+  if (typeof uv !== "number") {
+    return ""
+  }
+
+  const roundedUV = Math.round(uv);
   if (roundedUV >= 11) {
     return 'Extremely High';
   } else if (roundedUV >= 8) {

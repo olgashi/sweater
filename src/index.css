@@ -34,6 +34,7 @@ code {
 .single-day-weather {
   height: 6rem;
 }
+
 .single-day-weather div {
   text-align: center;
   padding-top: 0.5rem;
@@ -82,7 +83,6 @@ code {
 
 .next-day-humidity {
   font-size: 1.3em;
-
 }
 
 .next-day-sunset {
@@ -95,17 +95,14 @@ code {
 
 .next-day-wind {
   font-size: 1.3em;
-
 }
 
 .next-day-uvindex {
   font-size: 1.3em;
-
 }
 
 .next-day-cloudness {
   font-size: 1.3em;
-
 }
 
 .next-day-low-high {
@@ -130,7 +127,6 @@ code {
   font-size: 1vw;
   font-family: revert;
   font-weight: 400;
-
 }
 
 .searchbar, .form-control{
@@ -141,7 +137,6 @@ code {
 
 button:hover {
   background-color:#1f4680;
-
 }
 
 .next-hour-time {
@@ -149,7 +144,6 @@ button:hover {
   font-family: revert;
   font-weight: 700;
   align-items: center;
-
 }
 
 .single-day-weather.row {
@@ -225,7 +219,6 @@ button:hover {
 .current-temp-high {
   font-weight: 400;
   font-size: 2.1em;
-
 }
 
 .current-temp-feels-like {
@@ -285,7 +278,7 @@ button:hover {
 }
 
 .next-day-sunset-icon, .next-day-sunrise-icon {
-padding-right: 3em;
+  padding-right: 3em;
 }
 
 .logo {

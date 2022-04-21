@@ -160,6 +160,7 @@ class Autocomplete extends Component {
        <Col md={7}>
         
         <input
+          placeholder="Search City, Region or Zip Code"
           className="form-control form-control-sm"
           type="text"
           onChange={onChange}
@@ -171,7 +172,6 @@ class Autocomplete extends Component {
           region={region} 
           country={country}
           id="user-input-location-search"
-          ref={this.inputFieldRef}
         />
         {suggestionsListComponent}
         </Col>
