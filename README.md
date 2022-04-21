@@ -19,8 +19,7 @@ If the user had not previously requested weather for the requested location or t
 TODO:
 
 - Add better description of app architecture (including charts), include recent updates in the description
-- Dockerize
-- Deploy to DO
+- Deploy
 - Set up CI/CD pipeline
 
 [![Node.js CI](https://github.com/olgashi/sweater/actions/workflows/node.js.yml/badge.svg)](https://github.com/olgashi/sweater/actions/workflows/node.js.yml)
