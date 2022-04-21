@@ -8,6 +8,7 @@ export default function NextSingleDay (props) {
     feelsLikeTemp, humidity, sunrise, sunset, percipitation,
     wind, cloudness, uvIndex
     } = props;
+
   return (
       <Row className="single-day-weather">
         <Col md={3}>
@@ -33,9 +34,9 @@ export default function NextSingleDay (props) {
         {Math.round(tempLow)}F
         </Row>
         <Row className="next-day-feels-like">Feels like: {feelsLikeTemp}</Row>
-        {percipitation ? <>
+        {percipitation && Object.keys(percipitation).length > 0 ? <>
           <Row className="next-day-percipitation">
-          {percipitation.type}: {percipitation.value}" expected
+          {percipitation.type + ":"} {percipitation.value + `" expected`} 
         </Row>
         </> : <></>}
 

@@ -6,11 +6,11 @@ import { NUM_HOURS_TO_DISPLAY } from '../utils/const-utils';
 const moment = require('moment-timezone');
 
 export default function NextHoursContainer(props) {
-  const { hourly, timezone } = props;
+  const { weatherHourly, timeZone } = props;
 
-  moment.tz.setDefault(timezone);
+  moment.tz.setDefault(timeZone);
 
-  const fiveHoursOutput =  hourly.slice(0, NUM_HOURS_TO_DISPLAY).map(nextHourDataObj => {
+  const fiveHoursOutput = weatherHourly.slice(0, NUM_HOURS_TO_DISPLAY).map(nextHourDataObj => {
     const time = moment.unix(nextHourDataObj.dt).format('ha');
 
     return <NextSingleHour {...generateHourlyWeatherDataObj({ nextHourDataObj, time })}

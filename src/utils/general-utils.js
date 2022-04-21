@@ -5,23 +5,26 @@ import { determineUVSevereness } from './text-utils';
 const moment = require('moment');
 require('moment-timezone');
 
-export function filterHourlyWeatherToCurrentHours(weatherDataArr, userLocData) {
-  moment.tz.setDefault(userLocData.timezone);
-  let now = moment();
-
-  return weatherDataArr.filter(el => {
-    let day = moment.unix(el.dt);
-    if (now <= day) {
-      return el;
-    }
-  })
+export function filterHourlyWeatherToCurrentHours(weatherDataArr, timezone) {
+  if (weatherDataArr && Array.isArray(weatherDataArr) && timezone && weatherDataArr.length > 0) {
+    moment.tz.setDefault(timezone);
+    let now = moment();
+  
+    return weatherDataArr.filter(el => {
+      let day = moment.unix(el.dt);
+      if (now <= day) {
+        return el;
+      }
+    })
+  }
+  return null
 }
 
 export function getAlerts(weatherData) {
-  if (weatherData.alerts) {
-    return weatherData.alerts.map(alert => alert.description).filter(el => el).join(', ')
+  if (weatherData && weatherData.alerts && Array.isArray(weatherData.alerts)) {
+    return weatherData.alerts.map(alert => alert.description ? alert.description : alert.tags.join(', ')).filter(el => el).join(', ')
   }
-  return null
+  return ""
 }
 
 export function getLocationLookupDataFromInput(elementId) {
@@ -37,7 +40,10 @@ export function getLocationLookupDataFromInput(elementId) {
 }
 
 export function determinePercipitation(dayDataObj) {
-  let percipitation = null;
+  if (dayDataObj === undefined || Object.keys(dayDataObj).length === 0) {
+    return {}
+  }
+  let percipitation = {};
   if (dayDataObj.hasOwnProperty('snow')) {
     percipitation = { type: 'Snow', value: (parseFloat(dayDataObj.snow) * INCHES_IN_MM).toFixed(2)};
   } else if (dayDataObj.hasOwnProperty('rain')) {
@@ -46,7 +52,14 @@ export function determinePercipitation(dayDataObj) {
   return percipitation;
 }
 
-export function generateDailyWeatherDataObj({ dayDataObj, timezone }) {
+export function generateDailyWeatherDataObj(props) {
+  if (!props || !props.hasOwnProperty("dayDataObj") || !props.hasOwnProperty("timezone")) {
+    return {}
+  }
+  const { dayDataObj, timezone } = props;
+  if (!dayDataObj || !timezone) {
+    return {}
+  }
   return {
     day: convertToWeekDayShort(dayDataObj.dt, timezone),
     description: dayDataObj.weather[0].description,
@@ -64,8 +77,13 @@ export function generateDailyWeatherDataObj({ dayDataObj, timezone }) {
   };
 }
 
-export function generateHourlyWeatherDataObj({ nextHourDataObj, time }) {
-  return {
+export function generateHourlyWeatherDataObj(props) {
+  if (props && Object.keys(props).length === 0) {
+    return {}
+  }
+  const { nextHourDataObj, time } = props;
+
+  const obj = {
     time,
     description: nextHourDataObj.weather[0].description,
     icon: `http://openweathermap.org/img/wn/${nextHourDataObj.weather[0].icon}.png`,
@@ -73,4 +91,6 @@ export function generateHourlyWeatherDataObj({ nextHourDataObj, time }) {
     feelsLike: Math.round( nextHourDataObj.feels_like),
     wind: Math.round(nextHourDataObj.wind_speed)
   }
+
+  return obj
 }
