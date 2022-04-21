@@ -123,7 +123,8 @@ function App() {
               weatherDaily: updatedWeatherData.daily,
               alerts: getAlerts(updatedWeatherData),
             });
-          });
+          })
+          .catch((error) => console.log(error));
       } else {
         // Use data from cache
         const weatherToday = cachedWeatherData.daily[0];
