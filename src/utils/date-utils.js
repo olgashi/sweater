@@ -1,6 +1,9 @@
 export function convertToWeekDayShort(tmeStamp, timezone) {
-  const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const moment = require('moment-timezone');
+  if (!tmeStamp || ! timezone || !(new Date(tmeStamp)).getTime() > 0) {
+    return ""
+  }
+  const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   moment.tz.setDefault(timezone);
 
   const now = moment();
