@@ -11,7 +11,6 @@ test('renders NextSingleDay', () => {
  render(<NextSingleDay {...generateDailyWeatherDataObj({ dayDataObj: singleDayWeatherData, timezone: weatherData.timezone })}
  key={singleDayWeatherData.dt} 
  />)
-   const todayTextElement = screen.getByText('Today', {exact: false});
    const lighRainTextElement = screen.getByText('Light Rain', {exact: false});
    const feelsLikeTextElement = screen.getAllByText('Feels Like', {exact: false});
    const highLowTextElement = screen.getByText('52/40F', {exact: false});
@@ -19,7 +18,6 @@ test('renders NextSingleDay', () => {
    const uvIndexTextElement = screen.getByText('UV Index: 2.17 - Low', {exact: false});
    const cloudnessTextElement = screen.getByText('Cloudness: 100%', {exact: false});
 
-  expect(todayTextElement).toBeDefined();
   expect(lighRainTextElement).toBeDefined();
   expect(feelsLikeTextElement.length > 0).toBeTruthy();
   expect(highLowTextElement).toBeDefined();
