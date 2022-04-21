@@ -78,7 +78,7 @@ export function generateDailyWeatherDataObj(props) {
 }
 
 export function generateHourlyWeatherDataObj(props) {
-  if (props && Object.keys(props).length === 0) {
+  if (!props || props && Object.keys(props).length === 0) {
     return {}
   }
   const { nextHourDataObj, time } = props;
