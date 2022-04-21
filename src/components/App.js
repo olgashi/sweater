@@ -109,7 +109,6 @@ const [weatherData, setWeatherData] = useState({
           return fetchedWeatherData;
         }).then(updatedWeatherData => {
           const newWeatherData = updatedWeatherData.daily[0];
-
           setWeatherData({
             timezone: updatedWeatherData.timezone,
             weatherCurrent: updatedWeatherData.current, 

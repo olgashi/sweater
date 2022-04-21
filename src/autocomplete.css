@@ -42,5 +42,5 @@ input {
   border-bottom: 1px solid #999;
 }
 #user-input-location-search {
-  width: calc(300px + 1rem);
+  width: calc(350px + 1rem);
 }

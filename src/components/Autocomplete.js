@@ -45,6 +45,8 @@ class Autocomplete extends Component {
         region: e.target.getAttribute('region'),
         country: e.target.getAttribute('country')
       });
+
+      
     };
 
     onKeyDown = e => {
