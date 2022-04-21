@@ -18,9 +18,7 @@ If the user had not previously requested weather for the requested location or t
 
 TODO:
 
-- Finish Typescript refactor
 - Add better description of app architecture (including charts), include recent updates in the description
-- Add tests (unit, ent-to-end - Cypress, jest)
 - Dockerize
 - Deploy to DO
 - Set up CI/CD pipeline
