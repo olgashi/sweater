@@ -165,7 +165,7 @@ class Autocomplete extends Component {
 
     return (
       <Row>
-        <Col md={7}>
+        <Col md={5}>
           <input
             placeholder="Search City, Region or Zip Code"
             className="form-control form-control-sm"
@@ -182,7 +182,7 @@ class Autocomplete extends Component {
           />
           {suggestionsListComponent}
         </Col>
-        <Col md={5}>
+        <Col md={7}>
           <Button
             variant="outline-secondary"
             onClick={this.handleUserSearch}
