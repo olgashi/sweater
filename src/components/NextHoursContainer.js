@@ -6,9 +6,9 @@ import { NUM_HOURS_TO_DISPLAY } from "../utils/const-utils";
 const moment = require("moment-timezone");
 
 export default function NextHoursContainer(props) {
-  const { weatherHourly, timeZone } = props;
+  const { weatherHourly, timezone } = props;
 
-  moment.tz.setDefault(timeZone);
+  moment.tz.setDefault(timezone);
 
   const fiveHoursOutput = weatherHourly
     .slice(0, NUM_HOURS_TO_DISPLAY)
