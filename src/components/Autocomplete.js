@@ -21,6 +21,10 @@ class Autocomplete extends Component {
     };
 
     this.handleUserSearch = this.handleUserSearch.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.getSuggestionsFromAPI = this.getSuggestionsFromAPI.bind(this);
   }
 
   onChange(e) {
@@ -88,7 +92,7 @@ class Autocomplete extends Component {
               filteredSuggestions: data.data,
             });
           })
-          .catch((error) => console.log(error));
+          .catch((error) => error);
       }, 300);
 
       this.setState({ APICallTimer: timer });
