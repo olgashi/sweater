@@ -108,10 +108,21 @@ function App() {
           )
           .then((response) => response.data)
           .then((fetchedWeatherData) => {
-            fetchedWeatherData["data_cached_timestamp"] = new Date();
-            localforage.setItem(key, fetchedWeatherData);
+            const { current, daily, hourly, lat, lon, timezone } =
+              fetchedWeatherData;
+            const dataToCache = {
+              current,
+              daily,
+              hourly,
+              lat,
+              lon,
+              timezone,
+            };
+            dataToCache["data_cached_timestamp"] = new Date();
 
-            return fetchedWeatherData;
+            localforage.setItem(key, dataToCache);
+
+            return dataToCache;
           })
           .then((updatedWeatherData) => {
             const newWeatherData = updatedWeatherData.daily[0];
