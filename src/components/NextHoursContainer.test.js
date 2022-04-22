@@ -17,11 +17,9 @@ test("renders NextHoursContainer", () => {
   const windTextElement = screen.getByText("Wind: 15 mph", { exact: false });
   const tempTextElement = screen.getAllByText("F", { exact: false });
   const specificTempTextElement = screen.getAllByText("48 F", { exact: false });
-  const specificTimeTextElement = screen.getByText("3pm", { exact: false });
 
   expect(feelsLikeTextElement).toHaveLength(5);
   expect(windTextElement).toBeDefined();
   expect(tempTextElement.length === 10).toBeTruthy();
   expect(specificTempTextElement).toBeDefined();
-  expect(specificTimeTextElement).toBeDefined();
 });
