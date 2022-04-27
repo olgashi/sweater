@@ -11,11 +11,11 @@
   <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/eslint.svg"/>
   <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/jest.svg"/>
   <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/momentjs.svg"/>
-  <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/nodejs.svg"/>
+  <img width="115" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/nodejs.svg"/>
   <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/prettier.svg"/>
   <img width="55" src="https://user-images.githubusercontent.com/41551585/164776636-a6847e3f-3c21-47c7-a725-e6ff78e655d2.svg"/>
-  <img width="55" src="https://user-images.githubusercontent.com/41551585/164776413-6b15a88f-d753-492a-8517-65f639bc874b.svg"/>
-  <img width="55" src="https://user-images.githubusercontent.com/41551585/164788716-37f8ea00-3e0e-4b12-900e-6dacb31a0a18.svg"/>
+  <img width="155" src="https://user-images.githubusercontent.com/41551585/164776413-6b15a88f-d753-492a-8517-65f639bc874b.svg"/>
+  <img width="155" src="https://user-images.githubusercontent.com/41551585/164788716-37f8ea00-3e0e-4b12-900e-6dacb31a0a18.svg"/>
 
 </div>
 
