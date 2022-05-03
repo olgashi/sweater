@@ -39,16 +39,14 @@ After the user picks one of the suggestions and then clicks the **Get Weather** 
 ### Data caching
 The application caches the weather result to minimize number of API calls made. **localfrage** is used as a caching solution. Read more about localforage [here](https://localforage.github.io/localForage/)
 
-#### Overview of caching process
+### Overview of caching process
 
-#### User looks up weather for a specific location for the first time:
+## User looks up weather for a specific location for the first time:
+  <img width="355" src="https://user-images.githubusercontent.com/41551585/164791879-1f8c969d-6dfb-40b3-8fd0-ed608516ceb8.png"/>
 
-![Blank diagram (1)](https://user-images.githubusercontent.com/41551585/164791879-1f8c969d-6dfb-40b3-8fd0-ed608516ceb8.png)
 
-
-#### User had previously requested weather for that same location (some steps are omitted for brevity):
-
-![Copy of Blank diagram](https://user-images.githubusercontent.com/41551585/164786055-19e55b85-7a64-43e0-9e56-9244f3465d23.png)
+## User had previously requested weather for that same location (some steps are omitted for brevity):
+  <img width="450" src="https://user-images.githubusercontent.com/41551585/164786055-19e55b85-7a64-43e0-9e56-9244f3465d23.png"/>
 
 
 [![Node.js CI](https://github.com/olgashi/sweater/actions/workflows/node.js.yml/badge.svg)](https://github.com/olgashi/sweater/actions/workflows/node.js.yml)
