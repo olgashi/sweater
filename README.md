@@ -1,5 +1,5 @@
 ## Sweater - Weather forecast application  <img width="55" src="https://user-images.githubusercontent.com/41551585/164777612-1494781c-9d30-432f-aa82-d46bbdc40b51.png"/>
-:sunny:	:umbrella:	:cloud: :snowflake:	:snowman: :zap:
+:sunny:	:umbrella: :snowflake: :cloud:	:snowman: :zap:
 :cyclone:	:foggy:	:sun_with_face: :partly_sunny:
 
 ## Built with: React, localforage, JavaScript, ipinfo.io API, OpenWeather API, Weather API
