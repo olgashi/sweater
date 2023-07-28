@@ -19,8 +19,6 @@
 
 </div>
 
-[See Deployed APP here](https://sweater-weatherapp.herokuapp.com/)
-
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/41551585/164791091-cd10e502-669c-426f-bb4b-41c0a8b04ea0.gif)
 
 ## Overview
